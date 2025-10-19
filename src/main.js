@@ -144,8 +144,48 @@ function initFeedCarousel() {
 
 window.addEventListener('DOMContentLoaded', initFeedCarousel);
 
+
 // Инициализация падающих слов после загрузки DOM
 document.addEventListener("DOMContentLoaded", () => {
+  let modal = document.getElementById('modal');
+  let modalForm = document.getElementById('modalForm');
+  let modalOpen = document.getElementById('modalOpen');
+  let modalClose = document.getElementById('modalClose');
+  let modalBackground = document.getElementById('modalBackground');
+  let services = document.querySelectorAll('.service');
+  modalOpen.addEventListener('click', (e) => {
+    console.log('click');
+    e.preventDefault();
+    modal.classList.remove('pointer-events-none');
+    modalForm.classList.remove('-translate-x-[-100%]');
+    modalBackground.classList.remove('opacity-0');
+    modalBackground.classList.add('opacity-50');
+  });
+
+  modalClose.addEventListener('click', (e) => {
+    e.preventDefault();
+    modal.classList.add('pointer-events-none');
+    modalForm.classList.add('-translate-x-[-100%]');
+    modalBackground.classList.add('opacity-0');
+    modalBackground.classList.remove('opacity-50');
+  });
+  services.forEach(service => {
+    service.addEventListener('click', (e) => {
+      console.log('service click');
+      modal.classList.remove('pointer-events-none');
+      modalForm.classList.remove('-translate-x-[-100%]');
+      modalBackground.classList.remove('opacity-0');
+      modalBackground.classList.add('opacity-50');
+    });
+});
+  modalBackground.addEventListener('click', (e) => {
+    e.preventDefault();
+    modal.classList.add('pointer-events-none');
+    modalForm.classList.add('-translate-x-[-100%]');
+    modalBackground.classList.add('opacity-0');
+    modalBackground.classList.remove('opacity-50');
+  });
+  
   let fallingWordsInstance = initFallingWords();
   initBurgerMenu();
 
