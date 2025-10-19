@@ -5,28 +5,105 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vite App</title>
+  <title>Prosto</title>
+  <meta name="description" content="Prosto — это агентство, которое помогает брендам создавать уникальные и эффективные бренды. Мы помогаем брендам создавать уникальные и эффективные бренды.">
+  <meta name="keywords" content="Prosto, агентство, бренд, брендинг, дизайн, стратегия, спецпроекты, мерч, бренд-платформа, 360">
+  <meta name="author" content="Prosto">
+  <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow">
+  <meta name="google" content="notranslate">
+  <meta name="google-site-verification" content="google-site-verification=google-site-verification">
+  <meta name="google-site-verification" content="google-site-verification">
 </head>
 
 <body class="overflow-x-hidden">
-  <!-- Projects -->
-  <section class="bg-black flex flex-col p-12 max-md:py-6 max-md:px-3 gap-9 max-md:gap-6">
+  <div id="modal" class="fixed top-0 left-0 w-full h-full z-100000000000 pointer-events-none">
+    <div class="flex z-100000000000 flex-col justify-between w-1/2 h-full -translate-x-[-100%] bg-white right-0 top-0 absolute p-6">
+      <div>
+        <div class="flex flex-row justify-between items-center">
+          <h3 class="text-3xl font-semibold">Форма обратной связи</h3>
+          <div class="w-[50px] h-[50px] bg-black rounded-full"></div>
+        </div>
+        <div class="flex flex-col gap-6">
+          <input class="w-full h-[50px] text-xl max-md:text-xl text-black py-6 border-b-[1px] border-[#00000020]" type="text" placeholder="Имя">
+          <input class="w-full h-[50px] text-xl max-md:text-xl text-black py-6 border-b-[1px] border-[#00000020]" type="text" placeholder="Телефон">
+          <input class="w-full h-[50px] text-xl max-md:text-xl text-black py-6 border-b-[1px] border-[#00000020]" type="text" placeholder="Электронная почта">
+          <select required="" class="w-full h-[50px] appearance-none text-xl max-md:text-xl text-black border-b-[1px] border-[#00000020]" name="social" id="contact-method"> <option value="" disabled="" selected="">Удобный способ связи</option> <option value="telegram">Telegram</option> <option value="whatsapp">WhatsApp</option> <option value="email">Email</option> </select>
+        </div>
+      </div>
+      <div class="z-199999999 flex flex-col gap-6 opacity-0">
+        <p class="text-[14px] font-semibold text-gray-800">Нажимая кнопку «Отправить», вы даете согласие согласие на <a class="text-black" href="https://prostobureau.com/privacy">обработку персональных данных</a></p>
+        <button class="flex rounded-xl items-center justify-center p-0 w-full h-[50px] text-2xl font-semibold text-white py-6 bg-black cursor-pointer">Отправить</button>
+      </div>
+    </div>
+
+    <div class="w-full h-full absolute top-0 left-0 bg-black opacity-50"></div>
+  </div>
+  <!-- Header -->
+  <nav class="desktopNav">
+    <div class="desktopNavWrapper">
+      <a href="/">
+        <img src="/headerlogo.svg" alt="logoSmall" class="logoSmall" />
+      </a>
+      <img src="/burgerIcon.svg" alt="burger" class="burger" />
+      <div class="navLinks">
+        <a href="#projects">Проекты</a>
+        <a href="#services">Услуги</a>
+        <div class="line"></div>
+        <a href="#">Хочу проект</a>
+      </div>
+    </div>
+    <div class="burgerMenu">
+      <a href="#projects">Проекты</a>
+      <a href="#services">Услуги</a>
+      <a href="#">Хочу проект</a>
+    </div>
+  </nav>
+  <!-- first screen -->
+  <section class="firstScreen">
+    <div class="firstScreenContent">
+      <img src="/logo.svg" alt="logo" class="logoBig" />
+      <div class="logo_mobile">
+        <img src="/logo_up.png" alt="logoMobileUp" class="logoMobileUp" />
+        <img
+          src="/logo_mid.png"
+          alt="logoMobileMiddle"
+          class="logoMobileMiddle"
+        />
+        <img
+          src="/logo_down.png"
+          alt="logoMobileDown"
+          class="logoMobileDown"
+        />
+      </div>
+      <p class="firstScreenText">
+        Разрабатываем бренды: от стратегии до визуальной системы
+        и коммуникаций. Создаём чёткий инструмент для роста бизнеса — ничего
+        лишнего, только то, что работает
+      </p>
+    </div>
+    <div id="fallingText"></div>
+  </section>
+  <div id="scaleRoot">
+    <!-- Projects -->
+    <section id="projects" class="bg-black flex flex-col p-12 max-md:py-6 max-md:px-3 gap-9 max-md:gap-6">
+    <div class="w-full h-[1px] bg-[#ffffff20]"></div>
     <h2 class="text-white text-5xl font-[400] max-md:text-4xl">Проекты</h2>
     <div
       class="flex flex-row max-md:flex-col gap-6 max-md:gap-3 w-full h-[815px] max-md:h-fit py-9 max-md:py-0 border-t-[1px] border-b-[1px] border-[#FFFFFF20]">
-      <a href="" target="_blank"
+      <a href="/project-1.html"
         class="project flex flex-col justify-end gap-3 max-md:gap-1 p-6 max-md:p-3 w-full h-full max-md:h-[280px]">
         <p class="text-white text-base w-full">Создание бренда с нуля</p>
         <h4 class="text-white text-4xl font-bold w-full max-md:text-2xl">Самолет бизнес класс брендинг</h4>
       </a>
       <div class="w-[1px] h-full bg-white opacity-20"></div>
-      <a href="" target="_blank"
+      <a href="/project-2.html"
         class="project flex flex-col justify-end gap-3 max-md:gap-1 p-6 max-md:p-3 w-full h-full max-md:h-[280px]">
         <p class="text-white text-base w-full">Коммуникационная стратегия</p>
         <h4 class="text-white text-4xl font-bold w-full max-md:text-2xl">Бренд-коммуникация для Adidas</h4>
       </a>
       <div class="w-[1px] h-full bg-white opacity-20"></div>
-      <a href="" target="_blank"
+      <a href="/project-3.html"
         class="project flex flex-col justify-end gap-3 max-md:gap-1 p-6 max-md:p-3 w-full h-full max-md:h-[280px]">
         <p class="text-white text-base w-full">360</p>
         <h4 class="text-white text-4xl font-bold w-full max-md:text-2xl">Как мы сделали сайт, покоривший жюри</h4>
@@ -34,7 +111,7 @@
     </div>
   </section>
   <!-- Services -->
-  <section class="bg-white flex flex-col p-12 max-md:py-6 max-md:px-3 gap-9 max-md:gap-6">
+  <section id="services" class="bg-white flex flex-col p-12 max-md:py-6 max-md:px-3 gap-9 max-md:gap-6">
     <h2 class="text-black text-5xl font-[400]">Услуги</h2>
     <div
       class="flex flex-row max-md:flex-col gap-3 w-full h-[567px] max-md:h-fit py-6 border-t-[1px] border-b-[1px] border-[#00000020]">
@@ -109,7 +186,7 @@
     </div>
   </section>
   <!-- Feed -->
-  <section class="bg-black flex flex-col p-12 max-md:py-6 max-md:px-3 gap-9 w-full overflow-x-hidden">
+  <section id="feed" class="bg-black flex flex-col p-12 max-md:py-6 max-md:px-3 gap-9 w-full overflow-x-hidden">
     <h2 class="text-white text-5xl font-[400] max-md:text-4xl">Актуальное</h2>
     <div
       class="relative w-full h-[778px] max-md:h-fit py-9 max-md:py-6 border-t-[1px] border-b-[1px] border-[#FFFFFF20]">
@@ -118,11 +195,11 @@
         class="absolute cursor-pointer left-0 top-1/2 -translate-x-[20px] max-md:translate-x-[-10px] translate-y-[-60px] max-md:translate-y-[-65px] z-100000 flex items-center justify-center rounded-full aspect-square w-[80px] h-[80px] max-md:w-[50px] max-md:h-[50px] max-md:p-5 bg-white">
         <img src="/left.svg" alt="">
       </div>
-      <div id="feedViewport" class="feed-viewport w-full h-full overflow-x-auto no-scrollbar scroll-smooth">
-        <div id="feedTrack" class="flex min-w-fit h-[706px] max-md:h-fit flex-row gap-12 max-md:gap-6">
+      <div id="feedViewport" class="feed-viewport w-full h-fit overflow-x-auto no-scrollbar scroll-smooth">
+        <div id="feedTrack" class="flex min-w-fit h-fit max-md:h-fit flex-row gap-12 max-md:gap-6">
           <a href="" target="_blank"
             class="news flex flex-col gap-12 max-md:gap-6 py-6 max-md:px-3 min-w-[calc((100%-48px*4)/3)] max-md:min-w-[calc(100vw-24px)] w-full h-fit">
-            <div class="relative w-full aspect-square">
+            <div class="relative feed-image w-full aspect-square">
               <img class="z-1 w-full absolute left-[50%] top-[50%] -translate-x-1/2 -translate-y-1/2 rounded-full"
                 src="/actual.png" alt="">
               <h3
@@ -131,10 +208,10 @@
             </div>
             <p class="text-white text-4xl font-medium max-md:text-2xl">Подкаст про искусство от создателей бюро</p>
           </a>
-          <div class="min-w-[1px] w-[1px] h-full bg-white opacity-20 max-md:hidden"></div>
+          <div class="min-w-[1px] w-[1px] h-[700px] bg-[#ffffff20] max-md:hidden"></div>
           <a href="" target="_blank"
             class="news flex flex-col gap-12 max-md:gap-6 py-6 max-md:px-3 min-w-[calc((100%-48px*4)/3)] max-md:min-w-[calc(100vw-24px)] w-full h-fit">
-            <div class="relative w-full aspect-square">
+            <div class="relative feed-image w-full aspect-square">
               <img class="z-1 w-full absolute left-[50%] top-[50%] -translate-x-1/2 -translate-y-1/2" src="/actual.png"
                 alt="">
               <h3
@@ -143,10 +220,10 @@
             </div>
             <p class="text-white text-4xl font-medium max-md:text-2xl">Подкаст про искусство от создателей бюро</p>
           </a>
-          <div class="min-w-[1px] w-[1px] h-full bg-white opacity-20 max-md:hidden"></div>
+          <div class="min-w-[1px] w-[1px] h-[700px] bg-[#ffffff20] max-md:hidden"></div>
           <a href="" target="_blank"
             class="news flex flex-col gap-12 max-md:gap-6 py-6 max-md:px-3 min-w-[calc((100%-48px*4)/3)] max-md:min-w-[calc(100vw-24px)] w-full h-fit">
-            <div class="relative w-full aspect-square">
+            <div class="relative feed-image w-full aspect-square">
               <img class="z-1 w-full absolute left-[50%] top-[50%] -translate-x-1/2 -translate-y-1/2 rounded-full"
                 src="/actual.png" alt="">
               <h3
@@ -155,10 +232,10 @@
             </div>
             <p class="text-white text-4xl font-medium max-md:text-2xl">Подкаст про искусство от создателей бюро</p>
           </a>
-          <div class="min-w-[1px] w-[1px] h-full bg-white opacity-20 max-md:hidden"></div>
+          <div class="min-w-[1px] w-[1px] h-[700px] bg-[#ffffff20] max-md:hidden"></div>
           <a href="" target="_blank"
             class="news flex flex-col gap-12 max-md:gap-6 py-6 max-md:px-3 min-w-[calc((100%-48px*4)/3)] max-md:min-w-[calc(100vw-24px)] w-full h-fit">
-            <div class="relative w-full aspect-square">
+            <div class="relative feed-image w-full aspect-square">
               <img class="z-1 w-full absolute left-[50%] top-[50%] -translate-x-1/2 -translate-y-1/2" src="/actual.png"
                 alt="">
               <h3
@@ -176,32 +253,39 @@
       </div>
     </div>
   </section>
-  <footer
-    class="bg-white flex flex-row max-md:flex-col p-12 max-md:px-3 max-md:py-6 items-end w-full h-fit gap-24 max-md:gap-12">
-    <div class="flex flex-col gap-6 w-1/2 max-md:w-full max-md:py-12 max-md:border-b-[1px] max-md:border-t-[1px] max-md:border-[#00000020]">
-      <h4 class="text-5xl max-md:text-2xl font-semibold">Написать нам:</h4>
-      <a class="text-5xl max-md:text-[28px] font-semibold" href="#" target="_blank">→ telegram</a>
-      <a class="text-5xl max-md:text-[28px] font-semibold" href="#" target="_blank">→ hello@prostobureau.com</a>
-    </div>
-    <div class="flex flex-col gap-6 w-1/2 max-md:w-full">
-      <p class="text-2xl font-semibold">Или оставьте свои данные<br>
-        и мы с вами свяжемся:</p>
-      <div class="flex flex-col gap-6">
-        <input class="w-full h-[50px] text-2xl max-md:text-xl font-semibold text-black py-6" type="text"
-          placeholder="Имя">
-        <input class="w-full h-[50px] text-2xl max-md:text-xl font-semibold text-black py-6" type="text"
-          placeholder="Телефон">
-        <input class="w-full h-[50px] text-2xl max-md:text-xl font-semibold text-black py-6" type="text"
-          placeholder="Электронная почта">
-        <input class="w-full h-[50px] text-2xl max-md:text-xl font-semibold text-black py-6" type="text"
-          placeholder="Удобный способ связи">
-        <p class="text-[16px] text-gray-500 max-md:mt-12">Соглашаюсь на обработку<br>
-          <a class="text-black" href="https://prostobureau.com/privacy">персональных данных</a></p>
+  <footer id="footer" class="bg-white flex flex-row p-12 max-md:px-3 max-md:py-6 w-full h-fit">
+    <div
+      class="flex flex-row max-md:flex-col gap-24 max-md:gap-12 items-end w-full h-fit border-t-[1px] py-6 max-md:py-0 border-b-[1px] border-[#00000020]">
+      <div class="flex flex-col gap-6 w-1/2 max-md:w-full max-md:py-12 max-md:border-b-[1px] max-md:border-[#00000020]">
+        <h4 class="text-5xl max-md:text-2xl font-semibold">Написать нам:</h4>
+        <a class="text-5xl max-md:text-[28px] font-semibold" href="#" target="_blank">→ <span
+            class="underline">telegram</span></a>
+        <a class="text-5xl max-md:text-[28px] font-semibold" href="#" target="_blank">→ <span
+            class="underline">hello@prostobureau.com</span></a>
       </div>
-      <button
-        class="flex rounded-xl items-center justify-center p-0 w-full h-[50px] text-2xl font-semibold text-white py-6 bg-black">Отправить</button>
+      <div class="flex flex-col gap-6 w-1/2 max-md:w-full">
+        <p class="text-2xl font-semibold">Или оставьте свои данные<br>
+          и мы с вами свяжемся:</p>
+        <div class="flex flex-col gap-6">
+          <input
+            class="w-full h-[50px] text-2xl max-md:text-xl font-semibold text-black py-6 border-b-[1px] border-[#00000020]"
+            type="text" placeholder="Имя">
+          <input
+            class="w-full h-[50px] text-2xl max-md:text-xl font-semibold text-black py-6 border-b-[1px] border-[#00000020]"
+            type="text" placeholder="Телефон">
+          <input
+            class="w-full h-[50px] text-2xl max-md:text-xl font-semibold text-black py-6 border-b-[1px] border-[#00000020]"
+            type="text" placeholder="Электронная почта">
+            <select required="" class="w-full h-[50px] appearance-none text-2xl max-md:text-xl font-semibold text-black border-b-[1px] border-[#00000020]" name="social" id="contact-method"> <option value="" disabled="" selected="">Удобный способ связи</option> <option value="telegram">Telegram</option> <option value="whatsapp">WhatsApp</option> <option value="email">Email</option> </select>
+          <p class="text-[16px] text-gray-500 max-md:mt-12">Нажимая кнопку «Отправить», вы даете согласие согласие на <a class="text-black" href="https://prostobureau.com/privacy">обработку персональных данных</a>
+          </p>
+        </div>
+        <button
+          class="flex rounded-xl items-center justify-center p-0 w-full h-[60px] text-2xl font-semibold text-white py-6 bg-black cursor-pointer">Отправить</button>
+      </div>
     </div>
   </footer>
+  </div>
   <script type="module" src="/src/main.js"></script>
 </body>
 

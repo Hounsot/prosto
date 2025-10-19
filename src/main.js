@@ -1,4 +1,6 @@
 import './style.css'
+import { initFallingWords } from "./js/fallingWords.js";
+import { initBurgerMenu } from "./js/burgerMenu.js";
 
 const BASE_WIDTH = 1920;
 const MOBILE_BREAKPOINT = 768; // do not scale on small screens
@@ -12,29 +14,32 @@ function computeScale() {
 }
 
 function applyScale() {
+  const scaleRoot = document.getElementById('scaleRoot');
+  if (!scaleRoot) return; // nothing to scale
+
   const scale = computeScale();
 
   const supportsZoom = typeof CSS !== 'undefined' && typeof CSS.supports === 'function' && CSS.supports('zoom', '1');
 
   // Clear any scaling on small screens
   if (scale === 1) {
-    document.body.style.zoom = '';
-    document.body.style.transform = '';
-    document.body.style.transformOrigin = '';
-    document.body.style.width = '';
+    scaleRoot.style.zoom = '';
+    scaleRoot.style.transform = '';
+    scaleRoot.style.transformOrigin = '';
+    scaleRoot.style.width = '';
     return;
   }
 
   if (supportsZoom) {
-    document.body.style.transform = '';
-    document.body.style.transformOrigin = '';
-    document.body.style.width = '';
-    document.body.style.zoom = String(scale);
+    scaleRoot.style.transform = '';
+    scaleRoot.style.transformOrigin = '';
+    scaleRoot.style.width = '';
+    scaleRoot.style.zoom = String(scale);
   } else {
-    document.body.style.zoom = '';
-    document.body.style.transformOrigin = 'top left';
-    document.body.style.transform = `scale(${scale})`;
-    document.body.style.width = `${BASE_WIDTH}px`;
+    scaleRoot.style.zoom = '';
+    scaleRoot.style.transformOrigin = 'top left';
+    scaleRoot.style.transform = `scale(${scale})`;
+    scaleRoot.style.width = `${BASE_WIDTH}px`;
   }
 }
 
@@ -138,3 +143,23 @@ function initFeedCarousel() {
 }
 
 window.addEventListener('DOMContentLoaded', initFeedCarousel);
+
+// Инициализация падающих слов после загрузки DOM
+document.addEventListener("DOMContentLoaded", () => {
+  let fallingWordsInstance = initFallingWords();
+  initBurgerMenu();
+
+  // Debounce функция для перезапуска анимации при resize
+  let resizeTimeout;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      // Очищаем старый инстанс
+      if (fallingWordsInstance && fallingWordsInstance.cleanup) {
+        fallingWordsInstance.cleanup();
+      }
+      // Создаем новый
+      fallingWordsInstance = initFallingWords();
+    }, 300); // Ждем 300мс после окончания resize
+  });
+});

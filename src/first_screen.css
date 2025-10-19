@@ -1,0 +1,267 @@
+:root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --pinkTextSize: 90px;
+    --navHeight: 86px;
+    --firstScreenPadding: 48px;
+    --pinkTextSize: 90px;
+
+    @media (max-width: 960px) {
+        --firstScreenPadding: 12px;
+    }
+}
+body.nav_white {
+    .desktopNav {
+        background-color: var(--white);
+    }
+    .desktopNavWrapper {
+        .navLinks {
+            a {
+                color: var(--black);
+            }
+        }
+    }
+    .burgerMenu {
+        a {
+            color: var(--black);
+        }
+    }
+}
+section.firstScreen {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    padding-left: var(--firstScreenPadding);
+    box-sizing: border-box;
+    padding-bottom: 50px;
+    position: relative;
+    background-color: var(--black);
+}
+
+p.firstScreenText {
+    font-family: "Manrope", sans-serif;
+    color: var(--white);
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 110%;
+    letter-spacing: -0.48px;
+    max-width: 700px;
+}
+
+.logoBig {
+    width: 100%;
+    aspect-ratio: 16/9;
+}
+
+.firstScreenContent {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: fit-content;
+    padding-right: var(--firstScreenPadding);
+    z-index: 2;
+    pointer-events: none;
+}
+
+.desktopNav {
+    background-color: var(--black);
+    z-index: 100000000;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: var(--navHeight);
+    padding-top: 14px;
+    position: fixed;
+    transition: height 0.8s cubic-bezier(0.75, 0.01, 0.25, 1);
+    overflow: hidden;
+}
+
+.desktopNavWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 var(--firstScreenPadding);
+}
+
+.navLinks {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+
+    a {
+        color: var(--white);
+        font-family: "Manrope", sans-serif;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 100%;
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 6px 24px;
+
+        &:last-child {
+            position: relative;
+            font-family: "MarkTheMoment", sans-serif;
+            font-weight: 400;
+            font-size: 24px;
+            letter-spacing: 0;
+            padding: 0;
+            color: var(--black);
+            margin-left: 25px;
+
+            &::before {
+                position: absolute;
+                top: -11px;
+                left: -25px;
+                content: "";
+                height: 100%;
+                background-image: url("/buttonBG.svg");
+                background-repeat: no-repeat;
+                width: 170px;
+                height: 42px;
+                z-index: -1;
+            }
+        }
+    }
+}
+
+.burgerMenu {
+    padding-top: 200px;
+}
+
+.line {
+    width: 1px;
+    height: 30px;
+    background-color: var(--white);
+}
+
+.logoSmall {
+    width: 70px;
+    max-width: 145px;
+}
+
+.burger {
+    display: none;
+}
+
+#fallingText {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+#fallingText canvas {
+    cursor: grab;
+    width: 100%;
+    height: 100%;
+}
+
+.logo_mobile {
+    display: none;
+}
+
+@media (max-width: 960px) {
+    /* #fallingText {
+      height: 37vw;
+    } */
+
+    .logo_mobile {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .logoMobileMiddle {
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+        object-fit: fill;
+        height: 300px;
+        margin: -1px 0px -1px 0px;
+    }
+
+    .navLinks {
+        display: none;
+    }
+
+    .burger {
+        display: flex;
+        cursor: pointer;
+        max-width: 25px;
+    }
+
+    .logoBig {
+        display: none;
+    }
+
+    .logoMobile {
+        display: flex;
+    }
+
+    .firstScreenContent {
+        width: 100%;
+    }
+
+    p.firstScreenText {
+        font-size: 16px;
+    }
+
+    section.firstScreen {
+        padding-bottom: 0px;
+    }
+
+    .burgerMenu {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding: 40px var(--firstScreenPadding) 0px var(--firstScreenPadding);
+
+        a {
+            position: relative;
+            font-family: "Manrope", sans-serif;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--white);
+            font-size: 18px;
+            font-style: normal;
+            line-height: 100%;
+            padding: 16px 0;
+            border-bottom: 1px solid #404040;
+
+            &:last-child {
+                font-family: "MarkTheMoment", sans-serif;
+                font-size: 38px;
+                border-bottom: none;
+                text-align: center;
+                color: var(--black);
+
+                &::before {
+                    z-index: -1;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    content: "";
+                    width: 100%;
+                    height: 100%;
+                    background-image: url("/buttonMobileBG.svg");
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                }
+            }
+        }
+    }
+
+    .desktopNav.open {
+        height: 100vh;
+        align-items: flex-start;
+    }
+}
