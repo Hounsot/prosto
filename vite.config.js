@@ -5,6 +5,7 @@ export default defineConfig({
   plugins: [
     tailwindcss(),
   ],
+  base: process.env.GH_PAGES ? '/prosto/' : '/',
   build: {
     rollupOptions: {
       input: {
