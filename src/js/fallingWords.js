@@ -5,6 +5,7 @@ export function initFallingWords() {
   if (!container) return;
 
   const THICCNESS = 60;
+  const MOBILE_BREAKPOINT = 768;
 
   // Создаем движок Matter.js
   const Engine = Matter.Engine;
@@ -79,10 +80,12 @@ export function initFallingWords() {
   function getBlackBlockHeight() {
     if (container.clientWidth < 350) {
       return container.clientWidth * 1.3;
+    } else if (container.clientWidth < 381) {
+      return container.clientWidth * 1.30;
     } else if (container.clientWidth < 400) {
-      return container.clientWidth * 1.35;
+      return container.clientWidth * 1.22;
     } else if (container.clientWidth < 470) {
-      return container.clientWidth * 1.18;
+      return container.clientWidth * 1.16;
     } else if (container.clientWidth < 500) {
       return container.clientWidth * 1.05;
     } else if (container.clientWidth < 550) {
@@ -321,6 +324,8 @@ export function initFallingWords() {
 
   // Функция обработки resize
   function handleResize() {
+    // Ignore resize adjustments on mobile to prevent redraws on address/tab bar changes
+    if (window.innerWidth <= MOBILE_BREAKPOINT) return;
     render.canvas.width = container.clientWidth;
     render.canvas.height = container.clientHeight;
 

@@ -73,6 +73,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 .service:hover{
   background-color: #ffffff;
+  h4 {
+    color: #000000;
+  }
+  p {
+    color: #000000;
+    opacity: 1;
+  }
+}
+/* Mobile tap: emulate hover via .is-active */
+.service.is-active{
+  background-color: #ffffff;
   border: 1px solid #FF262660;
   h4 {
     color: #000000;
@@ -82,6 +93,11 @@ h1, h2, h3, h4, h5, h6 {
     opacity: 1;
   }
 }
+/* Mirror Tailwind group-hover utility effects when .service has .is-active */
+.service.is-active .group-hover\:opacity-100 { opacity: 1; }
+.service.is-active .group-hover\:bg-black { background-color: #000000; }
+.service.is-active .group-hover\:rotate-90 { transform: rotate(90deg); }
+.service.is-active .group-hover\:invert { filter: invert(1); }
 /* Feed viewport scrollbar hidden + snap */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }

@@ -149,17 +149,20 @@ window.addEventListener('DOMContentLoaded', initFeedCarousel);
 document.addEventListener("DOMContentLoaded", () => {
   let modal = document.getElementById('modal');
   let modalForm = document.getElementById('modalForm');
-  let modalOpen = document.getElementById('modalOpen');
+  let modalOpen = document.querySelectorAll('#modalOpen');
   let modalClose = document.getElementById('modalClose');
   let modalBackground = document.getElementById('modalBackground');
   let services = document.querySelectorAll('.service');
-  modalOpen.addEventListener('click', (e) => {
+  
+  modalOpen.forEach(modalOpen => {
+    modalOpen.addEventListener('click', (e) => {
     console.log('click');
     e.preventDefault();
     modal.classList.remove('pointer-events-none');
     modalForm.classList.remove('-translate-x-[-100%]');
     modalBackground.classList.remove('opacity-0');
     modalBackground.classList.add('opacity-50');
+  });
   });
 
   modalClose.addEventListener('click', (e) => {
@@ -169,15 +172,27 @@ document.addEventListener("DOMContentLoaded", () => {
     modalBackground.classList.add('opacity-0');
     modalBackground.classList.remove('opacity-50');
   });
-  services.forEach(service => {
-    service.addEventListener('click', (e) => {
-      console.log('service click');
-      modal.classList.remove('pointer-events-none');
-      modalForm.classList.remove('-translate-x-[-100%]');
-      modalBackground.classList.remove('opacity-0');
-      modalBackground.classList.add('opacity-50');
+  // Mobile tap hover emulation
+  function enableMobileServiceActive() {
+    if (window.innerWidth > MOBILE_BREAKPOINT) return;
+    services.forEach((service) => {
+      // Toggle active on tap; remove from siblings
+      service.addEventListener('touchstart', (e) => {
+        // Allow native scrolling; only toggle when tapping inside card
+        services.forEach((s) => s.classList.remove('is-active'));
+        service.classList.add('is-active');
+      }, { passive: true });
     });
-});
+    // Clear active when tapping outside
+    document.addEventListener('touchstart', (e) => {
+      if (!(e.target instanceof Element)) return;
+      const isService = e.target.closest('.service');
+      if (!isService) {
+        services.forEach((s) => s.classList.remove('is-active'));
+      }
+    }, { passive: true });
+  }
+  enableMobileServiceActive();
   modalBackground.addEventListener('click', (e) => {
     e.preventDefault();
     modal.classList.add('pointer-events-none');
@@ -192,6 +207,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // Debounce функция для перезапуска анимации при resize
   let resizeTimeout;
   window.addEventListener("resize", () => {
+    // Skip resize handling on mobile to avoid restarting animation when browser UI changes
+    if (window.innerWidth <= MOBILE_BREAKPOINT) return;
+    
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
       // Очищаем старый инстанс
