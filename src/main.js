@@ -1,6 +1,7 @@
 import './style.css'
 import { initFallingWords } from "./js/fallingWords.js";
 import { initBurgerMenu } from "./js/burgerMenu.js";
+import './js/tildaBridge.js';
 
 const BASE_WIDTH = 1920;
 const MOBILE_BREAKPOINT = 768; // do not scale on small screens
@@ -143,6 +144,93 @@ function initFeedCarousel() {
 }
 
 window.addEventListener('DOMContentLoaded', initFeedCarousel);
+
+// --- Projects carousel ---
+function initProjectsCarousel() {
+  const viewport = document.getElementById('projectsViewport');
+  const track = document.getElementById('projectsTrack');
+  const left = document.getElementById('projectsLeft');
+  const right = document.getElementById('projectsRight');
+  if (!viewport || !track || !left || !right) return;
+  // Disable carousel behavior on mobile – keep original stacked layout
+  if (window.innerWidth <= MOBILE_BREAKPOINT) return;
+
+  const getItems = () => Array.from(track.querySelectorAll('.project'));
+
+  function getStepWidth() {
+    const items = getItems();
+    if (items.length === 0) return viewport.clientWidth;
+    const first = items[0];
+    const style = window.getComputedStyle(track);
+    const gap = parseFloat(style.columnGap || style.gap || '0');
+    return Math.round(first.offsetWidth + gap);
+  }
+
+  function getVisibleCount() {
+    const step = getStepWidth();
+    const count = Math.max(1, Math.floor(viewport.clientWidth / step));
+    return count;
+  }
+
+  function getMaxStartIndex() {
+    const itemsCount = getItems().length;
+    const visible = getVisibleCount();
+    return Math.max(itemsCount - visible, 0);
+  }
+
+  function getCurrentIndex() {
+    const step = getStepWidth();
+    return Math.round(viewport.scrollLeft / step);
+  }
+
+  function scrollToIndex(index) {
+    const step = getStepWidth();
+    const maxStart = getMaxStartIndex();
+    const clamped = Math.min(Math.max(index, 0), maxStart);
+    viewport.scrollTo({ left: clamped * step, behavior: 'smooth' });
+  }
+
+  function handleRight() {
+    const maxStart = getMaxStartIndex();
+    const next = getCurrentIndex() + 1;
+    if (next > maxStart) {
+      scrollToIndex(0);
+    } else {
+      scrollToIndex(next);
+    }
+  }
+
+  function handleLeft() {
+    const maxStart = getMaxStartIndex();
+    const prev = getCurrentIndex() - 1;
+    if (prev < 0) {
+      scrollToIndex(maxStart);
+    } else {
+      scrollToIndex(prev);
+    }
+  }
+
+  left.addEventListener('click', handleLeft);
+  right.addEventListener('click', handleRight);
+
+  // Touch swipe native; snap to nearest after scroll ends
+  let scrollEndTimeout = 0;
+  function scheduleSnapAlign() {
+    if (scrollEndTimeout) window.clearTimeout(scrollEndTimeout);
+    scrollEndTimeout = window.setTimeout(() => {
+      const idx = getCurrentIndex();
+      scrollToIndex(idx);
+    }, 80);
+  }
+  viewport.addEventListener('scroll', scheduleSnapAlign, { passive: true });
+
+  function realignOnResize() {
+    scrollToIndex(getCurrentIndex());
+  }
+  window.addEventListener('resize', realignOnResize, { passive: true });
+  window.addEventListener('orientationchange', realignOnResize, { passive: true });
+}
+window.addEventListener('DOMContentLoaded', initProjectsCarousel);
 
 
 // Инициализация падающих слов после загрузки DOM

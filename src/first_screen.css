@@ -237,7 +237,7 @@ p.firstScreenText {
 
             &:last-child {
                 font-family: "MarkTheMoment", sans-serif;
-                font-size: 38px;
+                font-size: 30px;
                 border-bottom: none;
                 text-align: center;
                 color: var(--black);
